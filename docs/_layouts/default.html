@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<base target="_blank">
+{% seo %}
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.0.min.js" integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4=" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  </head>
+
+  <body>
+      <header>
+        <h1>{{ site.title }}</h1>
+        <p>{{ site.description }}</p>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="{{ site.github.repository_url }}" class="button fork"><strong>View On GitHub</strong></a>
+      </div><!-- end banner -->
+      </header>
+    <div class="wrapper">
+      <nav>
+		{% include siteNav.html %}
+		<p style="margin-top: 20px; font-size: large; font-weight: bold;">This Page:</p>
+		<ul style="list-style-type: none; padding: 0px;"></ul>
+      </nav>
+      <section>
+
+	    <h1 class="docTitle">{{ page.title }}</h1>
+
+        {{ content }}
+
+      </section>
+      <footer>
+        {% if site.github.is_project_page %}
+          <p>Project maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+        {% endif %}
+        <p><small>Hosted on GitHub Pages &mdash; Based on theme by <a href="https://twitter.com/mattgraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+  </body>
+</html>
