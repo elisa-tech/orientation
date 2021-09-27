@@ -8,7 +8,7 @@ blockquote {
 }
 dt		{
 		margin-top: 5px;
-		color: mediumSlateBlue;
+		color: #006c80;
 		font-weight: 500;
 }
 dd {
@@ -19,7 +19,7 @@ dd ul {
 		margin-left: 30px;
 }
 header	{
-		background-color: darkSlateBlue;
+		background-color: #006c80;
 		color: white;
 		text-align: center;
 		padding-top: 20px;
@@ -32,7 +32,7 @@ header	{
 		padding: 10px;
 }
 #banner a {
-		color: mediumSlateBlue;
+		color: #00a1bf;
 }
 nav		{
 		position: fixed;
@@ -70,7 +70,7 @@ footer	{
 		margin-left: 10px;
 }
 .home	{
-		background-color: darkSlateBlue;
+		background-color: #006c80;
 		color: white;
 		width: 100%;
 		padding: 5px;
