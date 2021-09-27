@@ -23,7 +23,7 @@ header	{
 		color: white;
 		text-align: center;
 		padding-top: 20px;
-		margin-left: 250px;
+		margin-left: 270px;
 		margin-bottom: 20px;
 		width: 750px;
 }
@@ -32,17 +32,17 @@ header	{
 		padding: 10px;
 }
 #banner a {
-			color: #00a1bf;
-	}
+		color: #00a1bf;
+}
 nav		{
 		position: fixed;
 		top: 0px;
 		left: 0px;
-		width:	230px;
+		width:	250px;
 		padding-left: 5px;
 }
 section, footer {
-		margin-left: 250px;
+		margin-left: 270px;
 		width: 750px;
 }
 footer	{
@@ -70,7 +70,7 @@ footer	{
 		margin-left: 10px;
 }
 .home	{
-			background-color: #006c80;
+		background-color: #006c80;
 		color: white;
 		width: 100%;
 		padding: 5px;
