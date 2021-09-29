@@ -123,17 +123,40 @@ effectively performs a `git init`{: language-shell .highlight}
 Set your user name and e-mail in your cloned repository.
 Refer to [Set up Git - GitHub Docs](https://help.github.com/en/github/getting-started-with-github/set-up-git) for directions.
 
+We recommend that you set the `git pull`{:.language-shell .highlight} command to default to `--ff-only`{:.language-shell .highlight}
+as pull's default behoviour is to merge from the remote repository's master branch into the current branch.
+Refer to [Why you should use git pull -ff-only](https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only-git-is-a)
+for a detailed explanation of why this behaviour is not desirable.
+Use the `git config`{:.language-shell .highlight} 
+([docu](https://git-scm.com/docs/git-config))
+command to set the default.
+As described in 
+[Set up Git - GitHub Docs](https://help.github.com/en/github/getting-started-with-github/set-up-git),
+this command can set values either for the current repository (default, or with the `--local`{:.language-shell .highlight} option)
+or for all repositories (with the `--global`{:.language-shell .highlight} option.
+The values are stored in a **.git/config** file either at the root of **localRepo**, as mentioned above,
+or in your home directory, respectively.
+The appropriate command to set the default for all repositories would therefore be:
+~~~ shell
+
+$ git config --global pull.ff only
+
+~~~
+
+Instead of using the `git config`{:.language-shell .highlight} command, you can use your favourite text editor
+to enter the corresponding entries directly.
+Refer to the example conf file contents below for all recommended configuration values.
+
 Optionally, set up a procedure to automatically sign commits.  
 The currently recommended way is to use a GPG key.
 Refer to [Signing commits - GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits?query=feature+branch).  
 The traditional method, which is also acceptable, is to sign with your name and e-mail, as set in the git configuration.
 This means, however, that each commit must be called with the --signoff (or -s) argument.
 git has no configuration parameter for automatic sign-off, but you can set an alias for your commit command.
-Using your favourite text editor, you can add the following entry either in the .git/config in your home directory or at the root of **localRepo**
+Again, use the `git config`{:.language-shell .highlight}:
 ~~~~ conf
 
-[alias]
-  cs = commit --signoff
+$ git config --global alias.cs commit --signoff
 
 ~~~~
 and then substitute cs for the commit command, as in
@@ -160,6 +183,8 @@ Assuming you have used **localRepo/.git/config** for all your configuration, it 
 [branch "main"]
 	remote = origin
 	merge = refs/heads/main
+[pull]
+	ff = only
 
 ~~~
 
@@ -200,7 +225,7 @@ Should the local development environment already exist,
 Perform Steps 1 and 2 described in the
 [Periodically sync with projectRepo](#periodically-sync-with-projectrepo){: target="_self"} section below.
 
-## Create a newFeature branch...
+## Either create a newFeature branch...
 
 The **master** branches of **userRepo** and **localRepo** should not contain
 changes from the current work.
@@ -208,6 +233,15 @@ Instead they should mirror **projectRepo** in order to update your repositories 
 have occurred due to accepted pull requests since you originally created the **newFeature** branch..
 Refer to the next section for instructions on merging those changes
 into **newFeature**.
+
+First, ensure that the **master** branch is kept up to date.
+You should pull it from **userRepo** using the --ff-only option ([docu](https://git-scm.com/docs/git-pull)).
+~~~ shell
+
+$ git checkout mastter
+$ git pull origin master --ff-only
+
+~~~
 
 Creating a **newFeature** branch insulates your work from the rest of the project work.
 Refer to 
@@ -232,7 +266,7 @@ $ git push -u origin newFeature
 
 ~~~
 
-## or switch to the newFeature branch
+## ...or switch to the newFeature branch
 
 Should the **newFeature** branch already exist, you need only switch to it using the
 `git checkout`{:.language-shell .highlight} 
