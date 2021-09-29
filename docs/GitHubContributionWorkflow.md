@@ -296,9 +296,9 @@ $ git push origin
 
 ### Periodically sync with projectRepo
 
-As necessary, import the changes from **projectRepo** that have been merged since the last fork.
+As necessary, import the changes from **projectRepo** that have been merged since the last fork sync.
 These changes are located on the **master** branch.
-This is a three step process as follows.
+This is a two step process as follows.
 
 #### 1) Update userRepo from projectRepo
 
@@ -309,49 +309,45 @@ Refer to
 
 #### 2) Update localRepo from userRepo
 
-To bring the **master** branch updates into your local development environment,
-you must first switch to the **master** branch and then bring in the changes from **userRepo**.
-Use the `git checkout`{:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-checkout)) and  
-`git pull`{:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-pull))
-commands:
-~~~ shell
-
-$ git checkout master
-$ git pull origin
-
-~~~
-
-The **master** branch in **localRepo** is now synchronised with the **master** branch in **projectRepo**,
-but the changes must now be merged into the **newFeature** branch in **localRepo**.
-
-#### 3) Merge the changes in projectRepo into your local work
-
-Other than the content that you have changed, the content **newFeature** branch
-is at the base state.
+Other than the content that you have changed, the content ot the **newFeature** branch
+is at the **base** state.
 That is, the state it was in as the branch was created
-or in the state from the last merge.
-This merge updates the base state to the current state of **master**
-(which would then be synchronised with **projectRepo**).
+or in the state from the last merge from **userRepo/master**.
 
-Switch back to the **newFeature** branch and pull the changes over from
-the **master** branch using the  
-`git rebase`{:.language-shell .highlight} command
+To bring updates of all branches in **userRepo** into your local development environment,
+use the  
+`git fetch`{:.language-shell .highlight}
+([docu](https://git-scm.com/docs/git-fetch))
+command.
+
+The fetched changes must still be explicitly merged into the **newFeature** branch, however.
+Since **projectMaster** contains changes that are not contained in **newFeature**,
+the merge will update the base state of the branch.
+Use the
+`git rebase`{:.language-shell .highlight}
 ([docu](https://git-scm.com/docs/git-rebase))
+command to merge.
 ~~~ shell
 
-$ git checkout newFeature
-$ git rebase master
+git rebase origin/master
 
 ~~~
 
-In case of conflicts, rebase will interrupt the process and give you a chance to resolve the conflict.
+Should conflicts occur, rebase will interrupt the process and give you a chance to resolve the conflict.
 After the conflict has been resolved, the merge process can resume.
 Refer to the [rebase documentation](https://git-scm.com/docs/git-rebase)
 for a detailed description of the process and necessary commands.
 
 Now the **newFeature** branch is based on the most recent **master** branch and
-can be merged without back into the **master** branch without conflicts.
-Note that pushing the **newFeature** branch to **userRepo** will now require
+can be merged without back into the **master** branch (of **userRepo** and **projectRepo**) without conflicts.
+
+**Note 1** This workflow means that the local version of **master** in **localRepo**
+is **not** updated, but it does have the benefit that the merge operation
+does not involve checking out **master** to update it and then merging
+**master** into to **newFeature**.
+This lessens the danger of commiting **it** instead of **newFeature**.
+
+**Note 2** Pushing the **newFeature** branch to **userRepo** will now require
 the -force switch since rebasing will change the commit history in **localRepo**.
 Use
 ~~~ shell
@@ -359,7 +355,6 @@ Use
 $ git push origin -force
 
 ~~~
-
 
 
 ## Prepare for submission
@@ -402,9 +397,10 @@ thus require using the --force flag!
 
 ### Sync with projectRepo
 
-The rest of the content of **newFeature** should be at the same state as the current version on **projectRepo**.
+The rest of the content of **newFeature** should brought up to the same state as the current version on **projectRepo**, 
+if it isn't already.
 
-This is explained in  the [Periodically sync with projectRepo](#periodically-sync-with-projectrepo){: target="_self"} section above.
+How to do this is explained in  the [Periodically sync with projectRepo](#periodically-sync-with-projectrepo){: target="_self"} section above.
 
 ### Push your work to userRepo
 
