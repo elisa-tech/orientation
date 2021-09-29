@@ -189,6 +189,7 @@ Either create an issue for new work or add an entry to an existing issue.
 The notification should contain:
 * a description of the problem (maybe just the title)
 * a description of the work
+* the name of the branch on which you will be working
 * your name and email
 * your GitHub id, which, naturally, should be there already
 
@@ -199,7 +200,7 @@ Should the local development environment already exist,
 Perform Steps 1 and 2 described in the
 [Periodically sync with projectRepo](#periodically-sync-with-projectrepo){: target="_self"} section below.
 
-## Create a newFeature branch
+## Create a newFeature branch...
 
 The **master** branches of **userRepo** and **localRepo** should not contain
 changes from the current work.
@@ -213,10 +214,11 @@ Refer to
 [About branches - GitHub](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)
 for a more detailed explanation.
 
-Although you can create a branch with the `git branch` command
+Although you can create a branch with the 
+`git branch`{:.language-shell .highlight} command,
 ([docu](https://git-scm.com/docs/git-branch)),
-the `git checkout` command
-([docu](https://git-scm.com/docs/git-checkout))
+the `git checkout`{:.language-shell .highlight}
+([docu](https://git-scm.com/docs/git-checkout)) command
 can be used to switch to the new branch as well.
 ~~~ shell
 
@@ -227,6 +229,18 @@ The new branch should be placed on **userRepo** and the **localRepo** branch sho
 ~~~ shell
 
 $ git push -u origin newFeature
+
+~~~
+
+## or switch to the newFeature branch
+
+Should the **newFeature** branch already exist, you need only switch to it using the
+`git checkout`{:.language-shell .highlight} 
+([docu](https://git-scm.com/docs/git-checkout))
+command.
+~~~ shell
+
+$ git checkout newFeature
 
 ~~~
 
