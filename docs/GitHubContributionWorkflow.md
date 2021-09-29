@@ -260,7 +260,7 @@ about how to automate signing off commit.
 
 Include a reference the relevant issue in the commit message.
 Use the hashtag syntax  
-`#<<"issue number">>`{:.language-conf .highlight}
+`#<issue number>`{:.language-conf .highlight}
 ([docu](https://docs.github.com/en/github/writing-on-github/working-with-advanced-formatting/autolinked-references-and-urls#issues-and-pull-requests))
 This will link the commit to the issue and make it visible in the GitHub interface.
 
@@ -297,8 +297,8 @@ Refer to
 
 To bring the **master** branch updates into your local development environment,
 you must first switch to the **master** branch and then bring in the changes from **userRepo**.
-Use the `git checkout`[:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-checkout))
-and `git pull` ([docu](https://git-scm.com/docs/git-pull))
+Use the `git checkout`{:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-checkout)) and  
+`git pull`{:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-pull))
 commands:
 ~~~ shell
 
