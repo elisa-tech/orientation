@@ -40,6 +40,8 @@ All developers must therefore have a GitHub account before starting.
 You must sign the work that you commit.
 By signing your work, you document that you are author of the work 
 and have accepted the license conditions documented in the root directory of **projectRepo**.
+[ Developer Certficate of Origin - elinux.org](https://elinux.org/Developer_Certificate_Of_Origin)
+provides a more detailed explanation.
 
 **NOTE 3:** 
 You will be expected to keep your contribution in sync with the project repository until it has been accepted.
@@ -86,7 +88,9 @@ On newer repositories, there is a tendency to name it "main".
 # Set up the development environment
 
 You would need write permission to push changes from your **localRepo** directly to the **projectRepo**, which is neither advisable not generally permitted.
-Instead you should use the following procedure:
+GitHub has devised another approach (refer to
+[About collaborative development models - GitHub Docs](https://docs.github.com/en/github/collaborating-with-pull-requests/getting-started/about-collaborative-development-models).
+You should therefore use the following procedure:
 
 ## Create userRepo
 
@@ -123,7 +127,10 @@ effectively performs a `git init`{: language-shell .highlight}
 Set your user name and e-mail in your cloned repository.
 Refer to [Set up Git - GitHub Docs](https://help.github.com/en/github/getting-started-with-github/set-up-git) for directions.
 
-We recommend that you set the `git pull`{:.language-shell .highlight} command to default to `--ff-only`{:.language-shell .highlight}
+We recommend that you set the 
+`git pull`{:.language-shell .highlight} 
+[docu](https://git-scm.com/docs/git-pull)
+command to default to `--ff-only`{:.language-shell .highlight}
 as pull's default behoviour is to merge from the remote repository's master branch into the current branch.
 Refer to [Why you should use git pull -ff-only](https://blog.sffc.xyz/post/185195398930/why-you-should-use-git-pull-ff-only-git-is-a)
 for a detailed explanation of why this behaviour is not desirable.
@@ -153,7 +160,7 @@ Refer to [Signing commits - GitHub Docs](https://docs.github.com/en/authenticati
 The traditional method, which is also acceptable, is to sign with your name and e-mail, as set in the git configuration.
 This means, however, that each commit must be called with the --signoff (or -s) argument.
 git has no configuration parameter for automatic sign-off, but you can set an alias for your commit command.
-Again, use the `git config`{:.language-shell .highlight}:
+Again, use the `git config`{:.language-shell .highlight} command:
 ~~~~ conf
 
 $ git config --global alias.cs commit --signoff
@@ -238,7 +245,7 @@ First, ensure that the **master** branch is kept up to date.
 You should pull it from **userRepo** using the --ff-only option ([docu](https://git-scm.com/docs/git-pull)).
 ~~~ shell
 
-$ git checkout mastter
+$ git checkout master
 $ git pull origin master --ff-only
 
 ~~~
@@ -249,8 +256,8 @@ Refer to
 for a more detailed explanation.
 
 Although you can create a branch with the 
-`git branch`{:.language-shell .highlight} command,
-([docu](https://git-scm.com/docs/git-branch)),
+`git branch`{:.language-shell .highlight}
+([docu](https://git-scm.com/docs/git-branch)) command,
 the `git checkout`{:.language-shell .highlight}
 ([docu](https://git-scm.com/docs/git-checkout)) command
 can be used to switch to the new branch as well.
@@ -317,7 +324,7 @@ for writing the commit message.
 
 ### Back up your work on userRepo
 
-Use the `git push`{:.language-shell .highlight} command ([docu](https://git-scm.com/docs/git-push))
+Use the `git push`{:.language-shell .highlight} ([docu](https://git-scm.com/docs/git-push)) command 
 to update your remote repository.
 
 ~~~ shell
