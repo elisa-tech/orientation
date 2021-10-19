@@ -46,7 +46,7 @@ You will be expected to keep your contribution in sync with the project reposito
 
 # Terminology
 
-The diagramme below illustrates the repository topology underlying the terminology.
+The diagram below illustrates the repository topology underlying the terminology.
 
 ![Contribution Repositories](assets/graphics/GitHubContributionRepos.svg){: .svgImg}
 
@@ -96,7 +96,7 @@ Refer to [About Forks - GitHub Docs](https://help.github.com/en/github/collabora
 Note: If you activate the issue tracker in the options of **userRepo**,
 developers who fork your fork (i.e. to collaborate on intermediate versions before submitting a (final) PR to the project)
 will be able to create issues in **userRepo**.
-Otherwise all issues created on your will be forwarded to the **projectRepo** repository instead.
+Otherwise all issues created on **userRepo** will be forwarded to the **projectRepo** repository instead.
 
 ##  Create and set up localRepo
 If you haven't already done so, install git on your machine.
@@ -149,7 +149,7 @@ Refer to the example conf file contents below for all recommended configuration 
 
 Optionally, set up a procedure to automatically sign commits.  
 The currently recommended way is to use a GPG key.
-Refer to [Signing commits - GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits?query=feature+branch).  
+Refer to [Signing commits - GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits).  
 The traditional method, which is also acceptable, is to sign with your name and e-mail, as set in the git configuration.
 This means, however, that each commit must be called with the --signoff (or -s) argument.
 git has no configuration parameter for automatic sign-off, but you can set an alias for your commit command.
@@ -320,13 +320,15 @@ for writing the commit message.
 Use the `git push`{:.language-shell .highlight} command ([docu](https://git-scm.com/docs/git-push))
 to update your remote repository.
 
-John: Should this be git push origin newFeature
-{: .comment}
 ~~~ shell
 
 $ git push origin
 
 ~~~
+
+You can also configure **newFeature** to be the default to be pushed to by using:
+* `git push -u origin newFeature`{:.language-shell .highlight} when you first push it, or
+* `git branch --set-upstream newFeature origin/newFeature`{:.language-shell .highlight} if you forget
 
 ### Periodically sync with projectRepo
 
@@ -353,6 +355,11 @@ use the
 `git fetch`{:.language-shell .highlight}
 ([docu](https://git-scm.com/docs/git-fetch))
 command.
+~~~ shell
+
+$ git fetch origin
+
+~~~
 
 The fetched changes must still be explicitly merged into the **newFeature** branch, however.
 Since **projectMaster** contains changes that are not contained in **newFeature**,
@@ -373,12 +380,12 @@ Refer to the [rebase documentation](https://git-scm.com/docs/git-rebase)
 for a detailed description of the process and necessary commands.
 
 Now the **newFeature** branch is based on the most recent **master** branch and
-can be merged without back into the **master** branch (of **userRepo** and **projectRepo**) without conflicts.
+can be merged back into the **master** branch (of **userRepo** and **projectRepo**) without conflicts.
 
 **Note 1** This workflow means that the local version of **master** in **localRepo**
 is **not** updated, but it does have the benefit that the merge operation
 does not involve checking out **master** to update it and then merging
-**master** into to **newFeature**.
+**master** into **newFeature**.
 This lessens the danger of commiting **it** instead of **newFeature**.
 
 **Note 2** Pushing the **newFeature** branch to **userRepo** will now require
@@ -421,13 +428,13 @@ and the last commit (which is at the HEAD),
 use the following command:
 ~~~ shell
 
-$ git rebase HEAD-10 --signoff
+$ git rebase HEAD~10 --signoff
 
 ~~~
 
 Note that since this changes the history of **localRepo**, 
 pushing it to **userRepo** will overwrite the changelog and 
-thus require using the --force flag!
+thus requires using the --force flag!
 
 ### Sync with projectRepo
 
