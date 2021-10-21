@@ -10,7 +10,9 @@ This site uses those extensions, although ultimately the documentation may be pu
 
 NOTE:
 
-Should you want to contribute to the site, the wiki contains information on:
+Should you want to contribute to the site, the 
+[wiki](https://github.com/elisa-tech/orientation/wiki)
+contains information on:
 - setting up a local site and development environment
 - markdown and kramdown, as used on this site
 - tips and tricks related to extensions defined for this site
